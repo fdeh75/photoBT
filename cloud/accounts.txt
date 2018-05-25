@@ -1,0 +1,4 @@
+insta_user fdeh4162
+insta_psw 40a40a04dek
+yadisk_user m.makarov@compaero.ru
+yadisk_psw 40a40a04dek
