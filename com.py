@@ -15,6 +15,9 @@ FOC_OFF = "178\n"
 
 TRIG = True
 
+#ser = serial
+print("serial MODULE ok")
+
 def get_com(com):
 
     while True:
@@ -26,21 +29,25 @@ def get_com(com):
     com.flush()                                             #clean serial bufers
     return readOut
 
-
+#def com_searhc(com):
+print("COM SERCHING")
 flag = True
 d = ''
 while flag:
     for devises in os.listdir('/dev/'):
         if 'ttyUSB' in devises:
-            ser = serial.Serial('/dev/' + devises, 115200)
-            if 'PULT' in get_com(ser):
-                d = devises
-                flag = False
-            else:
-                print("The device could not be connected..\n")
-    time.sleep(2)
+            try:
+                ser = serial.Serial('/dev/' + devises, 115200)            
+                if 'PULT' in get_com(ser):
+                    d = devises
+                    flag = False
+            except:
+                print('ret')
+#        else:
+#                print("The device could not be connected..\n")
+    time.sleep(0.2)
 print("The device is connected successfully.. ", d, "\n")
-
+ #   return 0
 
 
 def init_serial(*args):
