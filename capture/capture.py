@@ -11,6 +11,8 @@ import io
 
 import asyncio
 
+import subprocess
+
 import time
 
 import com
@@ -122,6 +124,7 @@ def get_camera_file_info(camera, path):
 def get_captures_list(loop):
 
     current_milli_time = int(round(time.time() * 1000))
+    print("CAPTURE BEGIN")
 
     com.usb_off()
     com.focus_on()
@@ -224,8 +227,8 @@ def get_captures_list(loop):
     #     tasks.append(asyncio.ensure_future(set_capture(camera)))
     #
     # asyncio.gather(*tasks, loop=loop)
-
-    return 0
+    cmds = ['/usr/local/bin/ffprobe', '-f image2', '-pattern_type glob','-framerate 6','-i ./photo/*.JPG',' -s 1920x1080', './photo/video.mp4']
+    return dest_dir
 
 async def set_capture(camera):
 
